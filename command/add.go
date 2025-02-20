@@ -4,11 +4,9 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-
-	"task-manager"
 )
 
-var addCommand = &cobra.Command{
+var AddCommand = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new task",
 	Long:  `Add a new task to the task list.`,
@@ -17,6 +15,3 @@ var addCommand = &cobra.Command{
 	},
 }
 
-func init() {
-	main.RootCommand.AddCommand(addCommand)
-}
