@@ -2,7 +2,10 @@ package command
 
 import (
 	"fmt"
+
 	"github.com/spf13/cobra"
+
+	"task-manager"
 )
 
 var addCommand = &cobra.Command{
@@ -15,5 +18,5 @@ var addCommand = &cobra.Command{
 }
 
 func init() {
-	RootCommand.AddCommand(addCommand)
+	main.RootCommand.AddCommand(addCommand)
 }
