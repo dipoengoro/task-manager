@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	
-	"task-manager/command"
+	"taskmanager/command"
+	"taskmanager/pkg"
 
 	"github.com/spf13/cobra"
 )
@@ -20,8 +18,6 @@ func init() {
 }
 
 func main() {
-	if err := RootCommand.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	pkg.LoadTasks()
+	RootCommand.Execute()
 }

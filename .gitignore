@@ -1,2 +1,4 @@
-task-manager
+taskmanager
 .idea
+.trunk
+tasks.json
