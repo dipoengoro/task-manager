@@ -53,16 +53,10 @@ func DeleteTask(id string)  {
 
 func SaveTasks()  {
 	data, err:= json.Marshal(tasks)
-	if err!= nil {
-		fmt.Println("Error:", err)
-		return
-	}
+	CheckError(err)
 
 	err = os.WriteFile("tasks.json", data, 0644)
-	if err!= nil {
-		fmt.Println("Error:", err)
-		return
-	}
+	CheckError(err)
 }
 
 func LoadTasks() {
@@ -75,8 +69,5 @@ func LoadTasks() {
 	}
 
 	err = json.Unmarshal(data, &tasks)
-	if err!= nil {
-		fmt.Println("Error:", err)
-		return
-	}
+	CheckError(err)
 }
