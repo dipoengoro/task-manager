@@ -17,7 +17,24 @@ var ListCommand = &cobra.Command{
 }
 
 func init()  {
+	ListCommand.Flags().BoolP("completed", "c", false, "Show completed tasks")
+	ListCommand.Flags().BoolP("not-completed", "n", false, "Show not completed tasks")
+
 	ListCommand.Run = func(command *cobra.Command, args []string) {
-		pkg.ListTasks()
+		completed, _:= command.Flags().GetBool("completed")
+		notCompleted, _:= command.Flags().GetBool("not-completed")
+
+		if !completed && !notCompleted {
+			completed = true
+			notCompleted = true
+		}
+
+		if completed {
+			pkg.ListTasks(true)
+		}
+
+		if notCompleted {
+			pkg.ListTasks(false)
+		}
 	}
 }

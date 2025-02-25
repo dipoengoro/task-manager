@@ -32,14 +32,18 @@ func AddTask(task string, description string, deadline string) {
 	fmt.Println("Task berhasil ditambahkan!")
 }
 
-func ListTasks()  {
+func ListTasks(completed bool)  {
+	status := "Not Completed"
 	if len(tasks) == 0 {
 		fmt.Println("Tidak ada task.")
 		return
 	}
 
 	for i, task:= range tasks {
-		fmt.Printf("%d. %s\n", i+1, task.Task)
+		if task.Completed { status = "Completed" }
+		if task.Completed == completed {
+			fmt.Printf("%d. %s - [%s]\n", i+1, task.Task, status)
+		}
 	}
 }
 
