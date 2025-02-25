@@ -24,17 +24,23 @@ func init()  {
 		completed, _:= command.Flags().GetBool("completed")
 		notCompleted, _:= command.Flags().GetBool("not-completed")
 
+		var filterCompleted *bool
+
 		if !completed && !notCompleted {
-			completed = true
-			notCompleted = true
+			filterCompleted = nil
+			pkg.ListTasks(filterCompleted)
 		}
 
 		if completed {
-			pkg.ListTasks(true)
+			filterCompleted = &completed
+			pkg.ListTasks(filterCompleted)
 		}
 
 		if notCompleted {
-			pkg.ListTasks(false)
+			filterCompleted = &notCompleted
+			pkg.ListTasks(filterCompleted)
 		}
+
+		pkg.PrintTask(pkg.FilteredTasks)
 	}
 }

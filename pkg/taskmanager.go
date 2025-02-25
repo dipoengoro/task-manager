@@ -10,6 +10,7 @@ import (
 )
 
 var tasks []Task
+var FilteredTasks []Task
 
 func AddTask(task string, description string, deadline string) {
 	if task == "" {
@@ -32,17 +33,15 @@ func AddTask(task string, description string, deadline string) {
 	fmt.Println("Task berhasil ditambahkan!")
 }
 
-func ListTasks(completed bool)  {
-	status := "Not Completed"
-	if len(tasks) == 0 {
-		fmt.Println("Tidak ada task.")
-		return
+func ListTasks(filterCompleted *bool)  {
+	if filterCompleted == nil {
+		FilteredTasks = tasks
+		fmt.Println("pake nil")
 	}
 
-	for i, task:= range tasks {
-		if task.Completed { status = "Completed" }
-		if task.Completed == completed {
-			fmt.Printf("%d. %s - [%s]\n", i+1, task.Task, status)
+	for _, task:= range tasks {
+		if task.Completed == *filterCompleted {
+			FilteredTasks = append(FilteredTasks, task)
 		}
 	}
 }
